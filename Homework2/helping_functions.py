@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-
+import matplotlib.pyplot as plt
 
 def save_list(listname, filename = "list.txt"):
     with open(filename, 'w') as f:
@@ -22,3 +22,63 @@ def load_list(filename = "list.txt"):
 
             list_of_points.append(((pointx1, pointy1,), (pointx2, pointy2,),))
     return list_of_points
+
+def markPictures(image1, image2, list_of_points):
+    list_of_points_image1 = []
+    list_of_points_image2 = []
+
+    for i in range(len(list_of_points)):
+        list_of_points_image1.append(list_of_points[i][1])
+        list_of_points_image2.append(list_of_points[i][0])
+        
+    list_of_x1 = []
+    list_of_x2 = []
+    list_of_y1 = []
+    list_of_y2 = []
+
+    for i in range(len(list_of_points_image1)):
+        list_of_x1.append(list_of_points_image2[i][0])
+        list_of_y1.append(list_of_points_image2[i][1])
+
+    
+    fig1, ax = plt.subplots()
+    im1 = plt.imread(image2)
+    plt.imshow(im1)
+    for i in range(len(list_of_x1)): 
+        ax.plot([list_of_x1[i]], [list_of_y1[i]], 'gx')
+        if i == 0:
+            plt.text(list_of_x1[i], list_of_y1[i], 
+                "({ptx1:.2f},{pty1:.2f})".format(ptx1 = list_of_x1[i],
+                                                pty1 = list_of_y1[i]),
+                ha = 'center', va = 'bottom',
+                color = 'red',
+                transform = ax.transData)
+        elif i==1:
+            plt.text(list_of_x1[i], list_of_y1[i], 
+                "({ptx1:.2f},{pty1:.2f})".format(ptx1 = list_of_x1[i],
+                                                pty1 = list_of_y1[i]),
+                ha = 'center', va = 'bottom',
+                color = 'red',
+                transform = ax.transData)
+        elif i==4:
+            plt.text(list_of_x1[i], list_of_y1[i], 
+                "({ptx1:.2f},{pty1:.2f})".format(ptx1 = list_of_x1[i],
+                                                pty1 = list_of_y1[i]),
+                ha = 'center', va = 'bottom',
+                color = 'red',
+                transform = ax.transData)
+        elif i == 5:
+            plt.text(list_of_x1[i], list_of_y1[i], 
+                "({ptx1:.2f},{pty1:.2f})".format(ptx1 = list_of_x1[i],
+                                                pty1 = list_of_y1[i]),
+                ha = 'center', va = 'bottom',
+                color = 'red',
+                transform = ax.transData)
+        else:
+            plt.text(list_of_x1[i], list_of_y1[i], 
+                "({ptx1:.2f},{pty1:.2f})".format(ptx1 = list_of_x1[i],
+                                                pty1 = list_of_y1[i]),
+                ha = 'center', va = 'bottom',
+                color = 'red',
+                transform = ax.transData)
+    plt.show()
